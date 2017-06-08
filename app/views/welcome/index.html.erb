@@ -1,0 +1,76 @@
+<h1>Welcome#index</h1>
+<p>Find me in app/views/welcome/index.html.erb</p>
+
+<script>
+// Create the XHR object.
+function createCORSRequest(method, url) {
+  var xhr = new XMLHttpRequest();
+  if ("withCredentials" in xhr) {
+    // XHR for Chrome/Firefox/Opera/Safari.
+    xhr.open(method, url, true);
+    // xhr.setRequestHeader('Authoriziation', 'Bearer 69067f76-276f-bbdd-dafc-eff3d82c8a8f');
+  } else if (typeof XDomainRequest != "undefined") {
+    // XDomainRequest for IE.
+    xhr = new XDomainRequest();
+    xhr.open(method, url);
+  } else {
+    // CORS not supported.
+    xhr = null;
+  }
+  return xhr;
+}
+
+// Helper method to parse the title tag from the response.
+// function getTitle(text) {
+//   return text.match('<title>(.*)?</title>')[1];
+// }
+
+// Make the actual CORS request.
+function makeCorsRequest() {
+  // This is a sample server that supports CORS.
+  var url = 'https://apisandbox.dev.clover.com/v3/merchants/EJE2ZH35JJAG2/orders?access_token=69067f76-276f-bbdd-dafc-eff3d82c8a8f';
+  // var url = 'http://html5rocks-cors.s3-website-us-east-1.amazonaws.com/index.html';
+
+  var xhr = createCORSRequest('GET', url);
+
+
+  debugger;
+  if (!xhr) {
+    alert('CORS not supported');
+    return;
+  }
+
+  // Response handlers.
+  xhr.onload = function() {
+    var text = xhr.responseText;
+    // var title = getTitle(text);
+    alert('Response from CORS request to ' + text);
+  };
+
+  xhr.onerror = function() {
+    alert('Woops, there was an error making the request.');
+  };
+
+  xhr.send();
+}
+
+makeCorsRequest();
+
+// var oReq = new XMLHttpRequest();
+// oReq.open("GET", "https://apisandbox.dev.clover.com/", true);
+// var url = "https://apisandbox.dev.clover.com/";
+// if (!oReq) {
+//   alert("CORS not supported");
+// }
+//
+// oReq.onload = function() {
+//   alert("it works");
+// }
+//
+// oReq.onerror = function() {
+//   alert("error");
+// }
+//
+// oReq.send();
+
+</script>
